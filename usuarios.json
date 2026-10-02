@@ -1,0 +1,20 @@
+[
+    {
+        "nome": "Amanda",
+        "idade": 18,
+        "email": "Amanda@gmail.com",
+        "telefone": "27996055639"
+    },
+    {
+        "nome": "Jhon",
+        "idade": 16,
+        "email": "Jhon@gmail.com",
+        "telefone": "2799862314"
+    },
+    {
+        "nome": "Adry",
+        "idade": 20,
+        "email": "Adryely@gmail.com",
+        "telefone": "279977547732"
+    }
+]

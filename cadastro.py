@@ -1,4 +1,18 @@
-usuarios = []
+import json
+
+# Persistência de dados com JSON
+def carregar_usuarios(): # Cria uma função para carregar os usúarios.
+    try: # python, tente executar esse código.
+        with open("usuarios.json", "r") as arquivo: # Abra o arquivo usuarios.json para leitura "r" e chame o arquivo de arquivo.
+            return json.load(arquivo) # json.load() pega o conteúdo do arquivo JSON e transforma novamente em um objeto Python.
+    except FileNotFoundError: # Se o arquivo usuarios.json não existir, faça o que está aqui.
+        return [] # Se o arquivo não existir, a função retorna uma lista vazia.
+
+def salvar_usuarios(): # criar uma função para salvar os dados do usúario em json.
+    with open("usuarios.json", "w") as arquivo: # Abra o arquivo usuarios.json para escrita "w" e chame esse arquivo de arquivo.
+        json.dump(usuarios, arquivo, indent=4) # Pegue a lista usuarios e salve dentro desse arquivo em formato JSON, deixando tudo organizado com 4 espaços.
+
+usuarios = carregar_usuarios()
 
 while(True): 
     print("\n------ Sistema de Cadastro ------")
@@ -13,6 +27,8 @@ while(True):
     opcao = input("\nEscolha uma opção: ")
     
     # Cadastro de Usuarios
+    print("\n------ CADASTRAR USÚARIOS ------")
+    
     if opcao == "1":
         nome = input("Digite o nome: ")
         idade = int(input("Digite a idade: "))
@@ -27,7 +43,9 @@ while(True):
         }
 
         usuarios.append(usuario)
-        print("\nUsuário cadastrado com sucesso!")
+        salvar_usuarios()
+        print("Usuário cadastrado com sucesso!")
+        print("--------------------------------")
 
     # Listagem de Usuarios  
     elif opcao == "2": 
@@ -45,7 +63,7 @@ while(True):
 
     # Busca de usúarios         
     elif opcao == "3":
-        print("------ BUSCAR USÚARIO ------")
+        print("\n------ BUSCAR USÚARIO ------")
         nome_busca = input("Digite o nome do usuário: ")
         encontrado = False
 
@@ -66,7 +84,7 @@ while(True):
 
     # Atualização de usúarios
     elif opcao == "4":
-        print("------ ATUALIZAR USÚARIO ------") 
+        print("\n------ ATUALIZAR USÚARIO ------") 
         nome_usuario = input("Digite o nome do usúario que deseja atualizar: ")
         encontrado = False
 
@@ -82,6 +100,7 @@ while(True):
                   usuario["email"] = novo_email
                   usuario["telefone"] = novo_telefone
 
+                  salvar_usuarios()      
                   encontrado = True
 
                   print("Usúario atualizado com sucesso!")
@@ -93,13 +112,14 @@ while(True):
 
     # Exclusão de usúario
     elif opcao == "5":
-        print("------ EXCLUIR USÚARIO ------")
+        print("\n------ EXCLUIR USÚARIO ------")
         nome_usuario = input("Digite o nome do usúario que deseja excluir: ")
         encontrado = False
 
         for usuario in usuarios:
             if usuario["nome"] == nome_usuario:
                 usuarios.remove(usuario)
+                salvar_usuarios()
 
                 encontrado = True
 

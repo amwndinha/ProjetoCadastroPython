@@ -44,7 +44,27 @@ while(True):
                 print("---------------------------------")
                
     elif opcao == "3":
-        print("\nBuscar usúario")
+        print("------ BUSCAR USÚARIO ------")
+        nome_busca = input("Digite o nome do usuário: ")
+        encontrado = False
+
+        for usuario in usuarios:
+            if usuario["nome"] == nome_busca:
+                print("\nUsuário encontrado!")
+                print(f"Nome: {usuario['nome']}")
+                print(f"Idade: {usuario['idade']}")
+                print(f"Email: {usuario['email']}")
+                print(f"Telefone: {usuario['telefone']}")
+                print("----------------------------")
+
+                encontrado = True
+
+        if not encontrado:
+            print("Usuário não encontrado.")
+            print("----------------------------")
+
+        
+
     elif opcao == "4":
         print("\nAtualizar usúario") 
     elif opcao == "5":

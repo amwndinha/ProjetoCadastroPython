@@ -64,6 +64,7 @@ while(True):
             print("Usuário não encontrado.")
             print("----------------------------")
 
+    # Atualização de usúarios
     elif opcao == "4":
         print("------ ATUALIZAR USÚARIO ------") 
         nome_usuario = input("Digite o nome do usúario que deseja atualizar: ")
@@ -81,15 +82,36 @@ while(True):
                   usuario["email"] = novo_email
                   usuario["telefone"] = novo_telefone
 
-        print("Usúario atualizado com sucesso!")
-        print("-------------------------------")
+                  encontrado = True
+
+                  print("Usúario atualizado com sucesso!")
+                  print("-------------------------------")
 
         if not encontrado:
             print("Usúario não encontrado!")
             print("-------------------------------")
 
+    # Exclusão de usúario
     elif opcao == "5":
-        print("\nExcluir usúario")
+        print("------ EXCLUIR USÚARIO ------")
+        nome_usuario = input("Digite o nome do usúario que deseja excluir: ")
+        encontrado = False
+
+        for usuario in usuarios:
+            if usuario["nome"] == nome_usuario:
+                usuarios.remove(usuario)
+
+                encontrado = True
+
+                print("usúario excluído com sucesso!")
+                print("-----------------------------")
+                break
+
+        if not encontrado:
+            print("Usúario não encontrado.")
+            print("-----------------------------")
+
+    # Opção sair
     elif opcao == "6":
         print("\nPrograma Encerrado!")
         break

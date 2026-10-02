@@ -11,7 +11,8 @@ while(True):
     print("6 - Sair")
 
     opcao = input("\nEscolha uma opção: ")
-
+    
+    # Cadastro de Usuarios
     if opcao == "1":
         nome = input("Digite o nome: ")
         idade = int(input("Digite a idade: "))
@@ -19,17 +20,29 @@ while(True):
         telefone = input("Digite o telefone: ")
 
         usuario = {
-        "\nnome": nome,
-        "\nidade": idade,
-        "\nemail": email,
-        "\ntelefone": telefone
+        "nome": nome,
+        "idade": idade,
+        "email": email,
+        "telefone": telefone
         }
 
         usuarios.append(usuario)
         print("\nUsuário cadastrado com sucesso!")
 
+    # Lista de Usuarios  
     elif opcao == "2": 
-        print("\nLista de usúarios")
+        if len(usuarios) == 0:
+            print("Nenhum usúario cadastrado.")
+        else: 
+            print("\n------ USÚARIOS CADASTRADOS ------")
+    
+            for usuario in usuarios:
+                print(f"Nome: {usuario["nome"]}")
+                print(f"Idade: {usuario["idade"]}")
+                print(f"Email: {usuario["email"]}")
+                print(f"Telefone: {usuario["telefone"]}")
+                print("---------------------------------")
+               
     elif opcao == "3":
         print("\nBuscar usúario")
     elif opcao == "4":
@@ -41,5 +54,3 @@ while(True):
         break
     else: 
         print("\nOpção Inválida")
-
-print(usuarios)

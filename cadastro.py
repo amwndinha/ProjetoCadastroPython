@@ -26,14 +26,36 @@ while(True):
 
     opcao = input("\nEscolha uma opção: ")
     
-    # Cadastro de Usuarios
-    print("\n------ CADASTRAR USÚARIOS ------")
-    
     if opcao == "1":
-        nome = input("Digite o nome: ")
-        idade = int(input("Digite a idade: "))
-        email = input("Digite o email: ")
-        telefone = input("Digite o telefone: ")
+        # Cadastro de Usuarios
+        print("\n------ CADASTRAR USÚARIOS ------")
+        while True:
+            nome = input("Digite o nome: ").strip() #o .strip remove espaços desnecessários.
+            if nome:
+                break
+            print("o nome não pode ficar vazio!")
+
+        while True: 
+            try:
+                idade = int(input("Digite a idade: "))
+                if idade < 0:
+                    print("A idade precisa ser válida!")
+                else: 
+                    break
+            except ValueError:
+                print("Digite uma idade válida!")
+        
+        while True:
+            email = input("Digite o email: ").strip()
+            if "@" in email:
+                break
+            print("Digite um email válido.")
+        
+        while True:
+            telefone = input("Digite o telefone: ").strip()
+            if telefone:
+                break
+            print("O telefone não pode ficar vazio.")
 
         usuario = {
         "nome": nome,
@@ -90,10 +112,26 @@ while(True):
 
         for usuario in usuarios:
             if usuario["nome"] == nome_usuario:
-                  novo_nome = input("Digite o novo nome: ")
-                  nova_idade = int(input("Digite a nova idade: "))
-                  novo_email = input("Digite o novo email: ")
-                  novo_telefone = input("Digite o novo telefone: ")  
+                  novo_nome = input("Digite o novo nome: ").strip()
+                  
+                  while True:
+                        try:
+                            nova_idade = int(input("Digite a nova idade: "))
+
+                            if nova_idade < 0:
+                                print("A idade não pode ser negativa.")
+                            else:
+                                break
+
+                        except ValueError:
+                            print("Digite uma idade válida.")
+                  
+                  novo_email = input("Digite o novo email: ").strip()
+                  while "@" not in novo_email:
+                        print("Digite um email válido.")
+                        novo_email = input("Digite o novo email: ").strip()
+                  
+                  novo_telefone = input("Digite o novo telefone: ").strip() 
 
                   usuario["nome"] = novo_nome
                   usuario["idade"] = nova_idade
